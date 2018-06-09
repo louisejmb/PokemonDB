@@ -1,4 +1,4 @@
-package uk.co.curlybrackets.pokemondb.web;
+package uk.co.curlybrackets.pokemondb.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +31,19 @@ public class PokemonController {
         pokemonService.createNew(name, type);
     }
 
-    /*
     @RequestMapping(value = "/pokemon", method = RequestMethod.PUT)
-    public Pokemon updatePokemon(
-            @RequestParam(value = "name", defaultValue = "Pikachu") String name,
-            @RequestParam(value = "type", defaultValue = "electric") String type) {
-        return new Pokemon(name, type);
+    public void overwritePokemon(
+            @RequestParam(value = "name") String name,
+            @RequestParam(value = "type") String type) {
 
-    }*/
+    }
+
+    @RequestMapping(value = "/pokemon", method = RequestMethod.PATCH)
+    public void updatePokemon(
+            @RequestParam(value = "name") String name,
+            @RequestParam(value = "type") String type) {
+
+    }
 
     @RequestMapping(value = "/pokemon/{id}", method = RequestMethod.DELETE)
     public void deletePokemon(@PathVariable Long id) {
